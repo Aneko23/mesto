@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Места</title>
+  <link href="./pages/index.css" rel="stylesheet">
+</head>
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="images/Vector.png" alt="Логотип сайта">
+      <img class="header__line" src="images/Line.png" alt="Линия в шапке сайте">
+    </header>
+    <main>
+        <section class="profile">
+          <div class="profile__detail">
+            <img class="profile__avatar" src="images/image.jpg" alt="Аватарка профиля">
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button type="button" class="edit-button"></button>
+              <p class="profile__work">Исследователь океана</p>
+            </div>    
+          </div>  
+              <button type="button" class="add-button"></button>
+        </section>
+        <div class="popup">
+          <form class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input class="popup__name" type="text" value="Жак-Ив Кусто">
+          <input class="popup__job" type="text" value="Исследователь океана">
+          <input class="save-button" type="submit" value="Сохранить">
+          <button type="button" class="close-button"></button>
+          </form>
+        </div>  
+        <section class="elements">
+            <ul class="element">
+                <li class="element__item"><img class="element__image" src="images/fortress.png" alt="Крепость"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Карачаевск</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+            <ul class="element">
+                <li><img class="element__image" src="images/montain.png" alt="Горы"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Гора Эльбрус</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+            <ul class="element">
+                <li><img class="element__image" src="images/sunrise.png" alt="Рассвет"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Домбай</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+            <ul class="element">
+                <li><img class="element__image" src="images/fortress.png" alt="Крепость"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Гора Эльбрус</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+            <ul class="element">
+                <li><img class="element__image" src="images/montain.png" alt="Горы"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Домбай</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+            <ul class="element">
+                <li><img class="element__image" src="images/sunrise.png" alt="Рассвет"></li>
+                <li class="element__item"><div class="element__detail">
+                  <h3 class="element__name">Карачаево-Черкессия</h3>
+                  <button type="button" class="button-like"><img  src="./images/like.svg" alt="Иконка сердечка"></button>
+                </div></li>
+            </ul>
+        </section>
+        </main>
+        <footer class="footer">
+          <p class="footer__site">&copy; 2020. Mesto Russia</p>
+        </footer>
+        <script src="javascript.js"></script>
+  </div>
+</body>
+</html>
