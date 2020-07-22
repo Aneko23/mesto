@@ -8,3 +8,10 @@
     border-bottom: 1px solid rgba(0,0,0,0.2);
     padding-bottom: 13px;
 }
+
+@media screen and (max-width: 575px) {
+    .popup__name {
+        width: 230px;
+        margin: 15px auto 0;
+    }
+}

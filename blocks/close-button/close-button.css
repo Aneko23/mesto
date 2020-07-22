@@ -3,15 +3,14 @@
     height: 40.7px;
     background-image: url(../../images/Close\ Icon.svg);
     background-repeat: no-repeat;
-    background-size: 40.7px;
     background-position: center;
     background-color: black;
     border: none;
     padding: 0;
     margin: 0;
     position: absolute;
-    top: -47px;
-    right: -45.5px;
+    top: -40.7px;
+    right: -40.7px;
 }
 
 .close-button:hover {

@@ -8,3 +8,10 @@
     margin: 30px auto 0;
     padding-bottom: 13px;
 }
+
+@media screen and (max-width: 575px) {
+    .popup__job {
+        width: 230px;
+        margin: 15px auto 0;
+    }
+}
