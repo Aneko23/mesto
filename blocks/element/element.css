@@ -11,3 +11,9 @@
     padding: 0;
     margin: 0;
 }
+
+.element__card {
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+}
