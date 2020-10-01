@@ -38,9 +38,6 @@ function enableFormValidation (allSelectorsClasses, formElement) {
         });
     });
 
-    formElement.addEventListener('submit', function(event) {
-        event.preventDefault();
-    })
     toggleButtonState(allSelectorsClasses, inputList, buttonElement);
 }
 
@@ -49,7 +46,7 @@ function enableValidation (allSelectorsClasses) {
     formList.forEach(function (formElement) {
         {enableFormValidation(allSelectorsClasses, formElement)};
     });
-};
+}
 
 enableValidation({
     formSelector: '.popup__container',
