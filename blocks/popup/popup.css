@@ -4,6 +4,9 @@
 @import url(./__box/popup__box.css);
 @import url(./__pic/popup__pic.css);
 @import url(./__name/popup__name.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
+@import url(./__data/_error/popup__data_error.css);
 
 .popup {
     display: flex;
@@ -24,7 +27,6 @@
     transition-timing-function: linear;
     transition-delay: 0.1s;
 }
-
 
 .popup_opened {
     display: flex;

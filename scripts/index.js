@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 
-const element = document.querySelector('.edit-button');
+const editButton = document.querySelector('.edit-button');
 const popupEdit = document.querySelector('.popup_type_edit');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__work');
@@ -57,7 +57,7 @@ function formSubmitHandler (evt) {
 
 formName.addEventListener('submit', formSubmitHandler);
 
-element.addEventListener('click', function(){
+editButton.addEventListener('click', function(){
     popupToggle(popupEdit);
 });
 closeButton.addEventListener('click', function(){
@@ -142,3 +142,23 @@ function imageToggle() {
 closeImage.addEventListener('click', function(){
     imageToggle(popupImage);
 });
+
+document.addEventListener('keydown', function(event) {
+    const popupOpened = document.querySelector('.popup_opened');
+  
+    if (popupOpened && event.key == "Escape") {
+        popupToggle(popupOpened);
+    }
+  })
+
+  popupEdit.addEventListener('click', function(event) {
+    if (event.target == event.currentTarget) {
+      popupToggle(popupEdit);
+    }
+  })
+
+  popupPlace.addEventListener('click', function(event) {
+    if (event.target == event.currentTarget) {
+      popupToggle(popupPlace);
+    }
+  })

@@ -1,3 +1,5 @@
+@import url(./_error/popup__data_error.css);
+
 .popup__data {
     font-size: 14px;
     line-height: 17px;
