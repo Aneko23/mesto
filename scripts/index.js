@@ -145,9 +145,12 @@ closeImage.addEventListener('click', function(){
 
 document.addEventListener('keydown', function(event) {
     const popupOpened = document.querySelector('.popup_opened');
+    const popupImageOpend = document.querySelector('.popup_image');
   
     if (popupOpened && event.key == "Escape") {
         popupToggle(popupOpened);
+    } else if (popupImageOpend && event.key == "Escape") {
+        imageToggle(popupImage);
     }
   })
 
@@ -160,5 +163,11 @@ document.addEventListener('keydown', function(event) {
   popupPlace.addEventListener('click', function(event) {
     if (event.target == event.currentTarget) {
       popupToggle(popupPlace);
+    }
+  })
+
+  popupImage.addEventListener('click', function(event) {
+    if (event.target == event.currentTarget) {
+        imageToggle();
     }
   })

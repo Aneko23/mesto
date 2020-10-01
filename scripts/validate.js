@@ -6,10 +6,10 @@ function showInputError(allSelectorsClasses, formElement, inputElement, errorMes
     inputElement.classList.add(allSelectorsClasses.errorClass);
 }
   
-function hideInputError(allSelectorsClasses, formElement, inputElement) {
+function hideInputError(allSelectorsClasses, formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-    errorElement.textContent = allSelectorsClasses.errorClass;
+    errorElement.textContent = errorMessage;
     errorElement.classList.remove(allSelectorsClasses.inputErrorClass);
     inputElement.classList.remove(allSelectorsClasses.errorClass);
 }
