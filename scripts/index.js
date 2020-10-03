@@ -44,23 +44,20 @@ function handleFormSubmit (evt) {
 //открытие попапов
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', function() {
-        handleClickKey(event, popup);
-    });
+    document.addEventListener('keydown', handleClickKey);
 };
 
 //закрытие попапов
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', function() {
-        handleClickKey(event, popup);
-    });
+    document.removeEventListener('keydown', handleClickKey);
 };
 
 //обработчик при нажатии кнопки ESC
-function handleClickKey(event, popup) {
-    if (popup && event.key === "Escape") {
-        closePopup(popup);
+function handleClickKey(event) {
+    if (event.key === "Escape") {
+        const popupOpened = document.querySelector('.popup_opened');
+        closePopup(popupOpened);
     }
 };
 
