@@ -3,4 +3,9 @@
     width: 282px;
     height: 282px;
     border-radius: 10px 10px 0px 0px;
+    min-height: 282px;
+}
+
+.element__image:hover {
+    opacity: 0.9;
 }

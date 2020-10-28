@@ -1,32 +1,8 @@
 import {Card} from './card.js';
 import {FormValidator} from './formValidator.js';
-
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+import {popupImage, imageBox, imageText} from './utils.js';
+import {initialCards} from './array.js';
+import {openPopup} from './utils.js';
 
 //для работы с попапом для создания карточки нового места
 const addButton = document.querySelector('.add-button');
@@ -51,15 +27,14 @@ const nameInput = popupEdit.querySelector('.popup__data_name');
 const jobInput = popupEdit.querySelector('.popup__data_job');
 
 //для работы с попапом для просмотра картинки
-const popupImage = document.querySelector('.popup_type_image');
 const closeImage = popupImage.querySelector('.close-button');
 const formPlace = popupPlace.querySelector('.popup__container');
-const imageText = popupImage.querySelector('.popup__name'); 
-const imageBox = popupImage.querySelector('.popup__pic');
 
 //поля при добавлении каточки с местом
 const placeInput = popupPlace.querySelector('.popup__data_place');
 const linkInput = popupPlace.querySelector('.popup__data_link');
+const submitPlace = popupPlace.querySelector('.submit-button');
+const containerCards = document.querySelector('.elements');
 
 export const config = {
     itemTemplate: ".element",
@@ -81,10 +56,12 @@ function handleFormSubmit (evt) {
     closePopup(popupEdit);
 }
 
-//открытие попапов
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', handleClickKey);
+//обработчик при нажатии кнопки ESC
+export function handleClickKey(event) {
+    if (event.key === "Escape") {
+        const popupOpened = document.querySelector('.popup_opened');
+        closePopup(popupOpened);
+    }
 };
 
 //закрытие попапов
@@ -93,20 +70,23 @@ function closePopup(popup) {
     document.removeEventListener('keydown', handleClickKey);
 };
 
-//обработчик при нажатии кнопки ESC
-function handleClickKey(event) {
-    if (event.key === "Escape") {
-        const popupOpened = document.querySelector('.popup_opened');
-        closePopup(popupOpened);
-    }
+//закрытие попапа кликом на оверлей
+function closeClickOverlay(event) { 
+        if (event.target == event.currentTarget) { 
+            closePopup(popupImage); 
+        } 
 };
 
-//вывод карточек на страницу
-initialCards.forEach(function(item) {
+//создание карточки
+function createCard(item){
     const card = new Card(item, config.itemTemplate);
     const element = card.getElement();
-    const containerCards = document.querySelector('.elements');
-    containerCards.append(element);
+    containerCards.prepend(element);
+}
+
+//вывод карточек на страницу
+initialCards.reverse().forEach(function(item) {
+    createCard(item);
 });
 
 //добавление новых карточек
@@ -117,10 +97,7 @@ formPlace.addEventListener('submit', (evt) => {
       link: linkInput.value
     };
   
-    const card = new Card(item, config.itemTemplate);
-    const element = card.getElement();
-    const containerCards = document.querySelector('.elements');
-    containerCards.prepend(element);
+    createCard(item);
 
     closePopup(popupPlace);
   });
@@ -132,6 +109,12 @@ editButton.addEventListener('click', function() {
 
 });
 
+//активная кнопка
+function makeButtonInactive (buttonElement) {
+    buttonElement.classList.add('submit-button_inactive');
+    buttonElement.setAttribute('disabled', true);
+}
+
 formName.addEventListener('submit', handleFormSubmit);
 
 closeButton.addEventListener('click', function() {
@@ -140,18 +123,18 @@ closeButton.addEventListener('click', function() {
 );
 
 addButton.addEventListener('click', function(){
+    placeInput.value = "";
+    linkInput.value = "";
+    makeButtonInactive(submitPlace);
     openPopup(popupPlace);
+
 });
 
 closePopupPlace.addEventListener('click', function(){
     closePopup(popupPlace);
 });
 
-popupImage.addEventListener('click', function(event) { 
-    if (event.target == event.currentTarget) { 
-        closePopup(popupImage); 
-    } 
-});
+popupImage.addEventListener('click', closeClickOverlay);
 
 popupEdit.addEventListener('click', function(event) { 
     if (event.target == event.currentTarget) { 
@@ -174,6 +157,3 @@ formPlaceValidator.enableValidation()
 
 const formNameValidator = new FormValidator(config, config.formNameSelector);
 formNameValidator.enableValidation()
-
-
-export {popupImage, imageBox, imageText}

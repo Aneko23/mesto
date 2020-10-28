@@ -1,4 +1,5 @@
-import {popupImage, imageBox, imageText} from './index.js';
+import {popupImage, imageBox, imageText} from './utils.js';
+import {openPopup} from './utils.js';
 
 class Card {
     constructor(data, selector) {
@@ -8,7 +9,7 @@ class Card {
     };
 
     _getTemplate() {
-        return document.querySelector(this._selector).content.cloneNode(true).children[0];
+        return document.querySelector(this._selector).content.querySelector('.element__card').cloneNode(true);
     };
 
     _likePicture() {
@@ -23,7 +24,7 @@ class Card {
         imageBox.src = this._link;
         imageText.textContent = this._name;
 
-        popupImage.classList.toggle('popup_opened');
+        openPopup(popupImage);
     }
 
     _setEventListeners() {
@@ -42,11 +43,12 @@ class Card {
 
     getElement() {
         this._element = this._getTemplate();
+        const Image = this._element.querySelector('.element__image');
 
         this._setEventListeners();
 
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        Image.src = this._link;
+        Image.alt = this._name;
         this._element.querySelector('.element__name').textContent = this._name;
 
         return this._element;
