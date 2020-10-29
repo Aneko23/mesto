@@ -43,12 +43,12 @@ class Card {
 
     getElement() {
         this._element = this._getTemplate();
-        const Image = this._element.querySelector('.element__image');
+        const image = this._element.querySelector('.element__image');
 
         this._setEventListeners();
 
-        Image.src = this._link;
-        Image.alt = this._name;
+        image.src = this._link;
+        image.alt = this._name;
         this._element.querySelector('.element__name').textContent = this._name;
 
         return this._element;

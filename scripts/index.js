@@ -2,7 +2,7 @@ import {Card} from './card.js';
 import {FormValidator} from './formValidator.js';
 import {popupImage, imageBox, imageText} from './utils.js';
 import {initialCards} from './array.js';
-import {openPopup} from './utils.js';
+import {openPopup, handleClickKey} from './utils.js';
 
 //для работы с попапом для создания карточки нового места
 const addButton = document.querySelector('.add-button');
@@ -55,14 +55,6 @@ function handleFormSubmit (evt) {
     profileJob.textContent = jobInput.value;
     closePopup(popupEdit);
 }
-
-//обработчик при нажатии кнопки ESC
-export function handleClickKey(event) {
-    if (event.key === "Escape") {
-        const popupOpened = document.querySelector('.popup_opened');
-        closePopup(popupOpened);
-    }
-};
 
 //закрытие попапов
 function closePopup(popup) {
