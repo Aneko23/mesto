@@ -36,7 +36,7 @@ const linkInput = popupPlace.querySelector('.popup__data_link');
 const submitPlace = popupPlace.querySelector('.submit-button');
 const containerCards = document.querySelector('.elements');
 
-export const config = {
+const config = {
     itemTemplate: ".element",
     formSelector: '.popup__container',
     inputSelector: '.popup__data',
