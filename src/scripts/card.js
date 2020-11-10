@@ -1,15 +1,20 @@
-import {popupImage, imageBox, imageText} from './utils.js';
-import {openPopup} from './utils.js';
-
 class Card {
-    constructor(data, selector) {
+    constructor({data, handleCardClick}, selector) {
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
         this._selector = selector;
     };
 
     _getTemplate() {
-        return document.querySelector(this._selector).content.querySelector('.element__card').cloneNode(true);
+        console.log(this._selector)
+        const cardItem = document
+        .querySelector(this._selector)
+        .content
+        .querySelector('.element__card')
+        .cloneNode(true);
+        console.log(cardItem)
+        return cardItem;
     };
 
     _likePicture() {
@@ -18,13 +23,6 @@ class Card {
 
     _deleteHandler(){
         this._element.remove();
-    }
-
-    _openBigPicture() {
-        imageBox.src = this._link;
-        imageText.textContent = this._name;
-
-        openPopup(popupImage);
     }
 
     _setEventListeners() {
@@ -37,19 +35,19 @@ class Card {
         })
 
         this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._openBigPicture();
+            this._handleCardClick(this._name, this._link);
         })
     }
 
     getElement() {
         this._element = this._getTemplate();
-        const image = this._element.querySelector('.element__image');
-
         this._setEventListeners();
+
+        this._element.querySelector('.element__name').textContent = this._name;
+        const image = this._element.querySelector('.element__image');
 
         image.src = this._link;
         image.alt = this._name;
-        this._element.querySelector('.element__name').textContent = this._name;
 
         return this._element;
     }

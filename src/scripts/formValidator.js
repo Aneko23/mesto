@@ -61,7 +61,7 @@ export class FormValidator {
         inputElement.classList.remove(this._errorClass);
     }
     
-    enableValidation = () => {
+    enableValidation() {
         const submitFormHandler = (event) => {
           event.preventDefault();
 
