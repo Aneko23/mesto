@@ -7,13 +7,11 @@ class Card {
     };
 
     _getTemplate() {
-        console.log(this._selector)
         const cardItem = document
         .querySelector(this._selector)
         .content
         .querySelector('.element__card')
         .cloneNode(true);
-        console.log(cardItem)
         return cardItem;
     };
 
@@ -48,7 +46,6 @@ class Card {
 
         image.src = this._link;
         image.alt = this._name;
-
         return this._element;
     }
 }

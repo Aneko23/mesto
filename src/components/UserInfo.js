@@ -1,5 +1,3 @@
-import {profileName, profileJob, nameInput, jobInput} from './utils.js';
-
 export class UserInfo {
     constructor({nameSelector, jobSelector}) {
         this._name = document.querySelector(nameSelector);
@@ -11,11 +9,13 @@ export class UserInfo {
             name: this._name.textContent,
             job: this._job.textContent
         };
+        console.log(userInfo)
         return userInfo;
+        
     }
 
-    setUserInfo() {
-        profileName.textContent = nameInput.value;
-        profileJob.textContent = jobInput.value;
+   setUserInfo(profilData) {
+        this._name.textContent = profilData.name
+        this._job.textContent = profilData.job
     }
 }

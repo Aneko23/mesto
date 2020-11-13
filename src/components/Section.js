@@ -3,7 +3,7 @@ export class Section {
         this._initialArray = items;
         this._renderer = renderer;
 
-        this._containerSelector = document.querySelector(containerSelector);
+        this._container = document.querySelector(containerSelector);
     }
 
     renderItems() {
@@ -11,6 +11,14 @@ export class Section {
     }
 
     addItem(element) {
-        this._containerSelector.append(element);
+        this._container.append(element);
+    }
+
+    prependCard(element) {
+        this._container.prepend(element); 
+    }
+
+    renderElements(item) {
+        this._renderer(item);
     }
 }
