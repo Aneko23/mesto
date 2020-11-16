@@ -14,6 +14,17 @@ const userInfo = new UserInfo({
     jobSelector: '.profile__work'
 });
 
+//функция для создания карточки
+function createCard(data) {
+    const newCard = new Card({data,
+        handleCardClick: (text, link) => {
+            imageCard.open(text, link);
+        }  
+    }, ".element");
+    const element = newCard.getElement();
+    return element;
+}
+
 //открытие попапа с профилем
 editButton.addEventListener('click', () => {
     windowEdit.open();
@@ -53,21 +64,9 @@ const windowAdd = new PopupWithForm({
             name: input.placeInput,
             link: input.linkInput
         }
-        cardsAdd.renderElements(item)
+        const card = createCard(item);
+        cardsList.prependCard(card);
     }});
-
-        const cardsAdd = new Section({
-            items: initialCards,
-            renderer: (data) => {
-                const newCardAdd = new Card({data,
-                    handleCardClick: (text, link) => {
-                        imageCard.open(text, link);
-                    }  
-                }, ".element");
-                const newElement = newCardAdd.getElement();
-                cardsAdd.prependCard(newElement);
-                }
-        }, '.elements');
 windowAdd.setEventListeners();
 
 
@@ -79,12 +78,7 @@ imageCard.setEventListeners();
 const cardsList = new Section({
     items: initialCards,
     renderer: (data) => {
-        const card = new Card({data,
-            handleCardClick: (text, link) => {
-                imageCard.open(text, link);
-            }  
-        }, ".element");
-        const element = card.getElement();
+        const element = createCard(data);
         cardsList.addItem(element);
         }
 }, '.elements');
