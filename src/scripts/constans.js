@@ -7,7 +7,6 @@ const profileJob = document.querySelector('.profile__work');
 
 //для работы с попапом для создания карточки нового места
 export const addButton = document.querySelector('.add-button');
-//const popupPlace = document.querySelector('.popup_type_place');
 
 //для работы с попапом для редактирования профиля
 export const editButton = document.querySelector('.edit-button');
@@ -18,14 +17,15 @@ const formName = popupEdit.querySelector('.popup__container');
 const nameInput = popupEdit.querySelector('.popup__data_name');
 const jobInput = popupEdit.querySelector('.popup__data_job');
 
-//для работы с попапом для просмотра картинки
-//const formPlace = popupPlace.querySelector('.popup__container');
-
 //поля при добавлении каточки с местом
 const placeInput = popupPlace.querySelector('.popup__data_place');
 const linkInput = popupPlace.querySelector('.popup__data_link');
 export const submitPlace = popupPlace.querySelector('.submit-button');
-//const containerCards = document.querySelector('.elements');
+
+//для работы с попапом для смены аватара
+export const avatarBlock = document.querySelector('.avatar');
+export const avatarPhoto = document.querySelector('.profile__avatar');
+
 
 export const config = {
     itemTemplate: ".element",
@@ -36,7 +36,8 @@ export const config = {
     errorClass: 'popup__data_error',
     inputErrorClass: 'popup__input-error_active',
     formNameSelector: '.popup__container_name',
-    formPlaceSelector: '.popup__container_place'
+    formPlaceSelector: '.popup__container_place',
+    avatarSelector: '.popup__container_avatar'
 }
 
 export {popupImage, elementCard, profileName, profileJob, nameInput, jobInput};

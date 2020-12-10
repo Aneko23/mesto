@@ -7,6 +7,15 @@ export class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
     }
 
+    _renderLoading(isLoading) {
+        if(isLoading) {
+            console.log('Есть контакт')
+            this._form.querySelector('.submit-button').textContent = 'Сохранение...';  
+        } else {
+            this._form.querySelector('.submit-button').textContent = 'Сохранить';  
+        }
+      }
+
     _getInputValues() {
         this._inputList = this._popup.querySelectorAll('.popup__data');
         this._formValues = {};

@@ -11,3 +11,11 @@
 .delete-button:hover {
     opacity: 0.6;
 }
+
+.delete-button_inactive {
+    display: none;
+}
+
+.delete-button_active {
+    display: block;
+}
