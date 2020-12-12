@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && webpack --mode production",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server && open http://localhost:8080/"
   },
   "repository": {
     "type": "git",

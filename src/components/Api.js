@@ -5,6 +5,13 @@ export class Api {
         this._cohortId = cohortId;
     }
 
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
+    } 
+
     addCard(name, link) {
         return fetch(`${this._adress}/v1/${this._cohortId}/cards`, {
             method: 'POST',
@@ -17,12 +24,7 @@ export class Api {
                 link
             })
         })
-        .then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-    })
+        .then(this._getResponseData)
     }
 
     deleteCard(id) {
@@ -32,12 +34,7 @@ export class Api {
                 authorization: this._token
               }
         })
-        .then(res => {
-            if(res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-    })
+        .then(this._getResponseData)
     }
         
 
@@ -53,8 +50,6 @@ export class Api {
             return result.json();
         }).then((data) => {
             return data;
-        }).catch(err => {
-            alert(err);
         })
     }
 
@@ -65,12 +60,7 @@ export class Api {
             authorization: this._token
           },
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._getResponseData)
   }
 
   setUserProfile(name, about) {
@@ -85,12 +75,7 @@ export class Api {
             about,
         }),
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._getResponseData)
   }
 
   clickLike(id) {
@@ -101,12 +86,7 @@ export class Api {
             'Content-Type': 'application/json',
           }
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._getResponseData)
   }
 
   deleteLike(id) {
@@ -117,12 +97,7 @@ export class Api {
             'Content-Type': 'application/json',
           }
     })
-    .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then(this._getResponseData)
   }
   
 
@@ -137,12 +112,7 @@ export class Api {
             avatar
     })
     })
-        .then(res => {
-        if(res.ok) {
-            return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
-        })
+        .then(this._getResponseData)
     }
 
 

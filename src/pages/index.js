@@ -33,24 +33,34 @@ const userInfo = new UserInfo({
     userAvatar: '.profile__avatar',
 });
 
+//попап для удаления карточки
+const deleteCardPopup = new PopupFormSubmit({
+    popupSelector: '.popup_type_delete',
+    handleFormSubmit: () => {
+    }
+})
+deleteCardPopup.setEventListeners();
+
 //функция для создания карточки
 function createCard(data) {
-    const newCard = new Card({data,
+    const newCard = new Card({
+        data,
         handleCardClick: (text, link) => {
             imageCard.open(text, link);
         },
         handleDeleteCardClick: () => {
-            deleteCardPopup.open();
             deleteCardPopup.setSubmitAction(() => {
-                api.deleteCard(newCard.returnId())
+                const cardId = newCard.returnId();
+                 api.deleteCard(cardId)
                 .then(() => {
-                newCard._deleteHandler()
-                deleteCardPopup.close();
-            })
-            .catch(err => console.log(`Во время удаления карточки возникла проблема : ${err}`))
-            })
-        },
-        handleLikeClick: () => {
+                    newCard.deleteHandler();
+                    deleteCardPopup.close()
+                })
+                .catch(err => alert(`Во время удаления карточки возникла ошибка: ${err}`))
+            });
+            deleteCardPopup.open();
+          },
+          handleLikeClick: () => {
             if (!newCard._isLiked()) {
                 api.clickLike(newCard.returnId())
                 .then((data) => {
@@ -175,14 +185,6 @@ windowAdd.setEventListeners();
 const imageCard = new PopupWithImage('.popup_type_image');
 imageCard.setEventListeners();
 
-//попап для удаления карточки
-const deleteCardPopup = new PopupFormSubmit({
-    popupSelector: '.popup_type_delete',
-    handleFormSubmit: () => {
-    }
-})
-deleteCardPopup.setEventListeners()
-
 //активная кнопка
 function makeButtonInactive (buttonElement) {
     buttonElement.classList.add('submit-button_inactive');
@@ -201,6 +203,7 @@ formAvatarValidator.enableValidation()
 Promise.all([api.getUserProfile(), api.getCards()])
 .then(
     ([data, cards]) => {
+        console.log(data)
         userId = data._id;
         userInfo.setUserInfo({
             name: data.name,
@@ -210,3 +213,7 @@ Promise.all([api.getUserProfile(), api.getCards()])
         cardsList.renderItems(cards);
     }
 )
+.catch(err => {
+    alert(err);
+})
+
